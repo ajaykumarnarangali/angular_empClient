@@ -1,0 +1,32 @@
+<div class="w-100 d-flex justify-content-center align-items-center"
+  style="height: 91vh;background-color: rgb(178, 239, 239);">
+
+  <div class="row p-5 shadow border bg-light">
+    <div class="col">
+      <img class=""
+        src="https://img.freepik.com/free-vector/office-scenes-composition-with-female-employee-assigning-work-tasks-coworkers_1284-63419.jpg"
+        alt="image" width="300px">
+
+    </div>
+    <div class="col">
+      <h3>Admin Login</h3>
+      <form #logForm="ngForm" (ngSubmit)="handleLogin()">
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com"
+            #userEmail="ngModel" [(ngModel)]="email" required email>
+          <label for="floatingInput">Email address</label>
+          <span class="text-danger" *ngIf="userEmail.touched && userEmail.invalid">* Invalid Format</span>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password"
+            #userPassword="ngModel" [(ngModel)]="password" required pattern="[a-zA-Z@0-9]*" minlength="3" maxlength="8">
+          <label for="floatingPassword">Password</label>
+          <span class="text-danger"  *ngIf="userPassword.touched && userPassword.invalid">* Invalid Format</span>
+        </div>
+        <div class="mt-3 d-flex">
+          <button [disabled]="logForm.invalid" type="submit" class="btn btn-info btn-block">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="w-100 row">
+    <div class="col-2">
+        <div class="bg-dark pt-5" style="height: 93vh; ">
+            <h5 class="text-center">
+                <a routerLink="/home" class="text-light text-decoration-none">Home </a>
+            </h5>
+            <h5 class="text-center mt-4">
+                <a routerLink="/employee" class="text-light text-decoration-none">Employee </a>
+            </h5>
+        </div>
+    </div>
+
+
+    <div class="col-10 p-4">
+        <div class="d-flex justify-content-between">
+            <h2>Employee List</h2>
+            <a routerLink="/employee/add" class="btn btn-success">
+                <i class="fa-solid fa-user-plus"></i> Add Employee
+            </a>
+        </div>
+        <div class="d-flex mt-4 my-4">
+            <h4></h4>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex ">
+                <input class="form-control w-100 me-2" name="search" [(ngModel)]="searchTerm" type="text" placeholder="Enter username to search">
+                <button class="btn btn-success">Sort</button>
+            </div>
+            <div><button class="btn btn-warning" (click)="exportToPdf()">Export</button></div>
+        </div>
+        <div class="mt-5">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let emp of employee|search:searchTerm">
+                        <th scope="row">{{emp.id}}</th>
+                        <td>{{emp.username}}</td>
+                        <td>{{emp.email}}</td>
+                        <td>
+                            <button [ngClass]="emp.status=='active'?'btn btn-success':'btn btn-warning'">
+                                {{emp.status}}
+                            </button>
+                        </td>
+                        <td>
+                            <div class="">
+                                <a routerLink="/employee/edit/{{emp.id}}">
+                                    <i class="fa-solid fa-pen-to-square me-4" style="color: #0d2cc9;"></i>
+                                </a>
+                                <i class="fa-solid fa-trash" style="color: #f70808;cursor: pointer;" (click)="handleDelete(emp.id)"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
